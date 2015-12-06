@@ -22,8 +22,13 @@ RUN add-apt-repository ppa:webupd8team/java -y && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 #ElasticSearch
-RUN wget -O - https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.7.2.tar.gz | tar xz && \
+RUN wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.1.0/elasticsearch-2.1.0.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
+
+RUN useradd elasticsearch
+RUN chown -R elasticsearch /elasticsearch
+
+COPY elasticsearch.yml /elasticsearch/config/
 
 #Add runit services
 COPY sv /etc/service 
