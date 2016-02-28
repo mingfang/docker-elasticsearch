@@ -22,8 +22,12 @@ RUN add-apt-repository ppa:webupd8team/java -y && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 #ElasticSearch
-RUN wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.1.0/elasticsearch-2.1.0.tar.gz | tar xz && \
+RUN wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.2.0/elasticsearch-2.2.0.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
+
+#Delete By Query Plugin
+RUN cd /elasticsearch/bin && \
+    ./plugin install delete-by-query
 
 RUN useradd elasticsearch
 RUN chown -R elasticsearch /elasticsearch
