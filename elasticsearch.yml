@@ -20,7 +20,7 @@
 #
 # Use a descriptive name for the node:
 #
-# node.name: node-1
+node.name: ${HOSTNAME}
 #
 # Add custom attributes to the node:
 #
@@ -60,18 +60,7 @@ network.host: 0.0.0.0
 # For more information, see the documentation at:
 # <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html>
 #
-# ---------------------------------- Gateway -----------------------------------
-#
-# Block initial recovery after a full cluster restart until N nodes are started:
-#
-# gateway.recover_after_nodes: 3
-#
-# For more information, see the documentation at:
-# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-gateway.html>
-#
 # --------------------------------- Discovery ----------------------------------
-#
-# Elasticsearch nodes will find each other via unicast, by default.
 #
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
@@ -85,6 +74,15 @@ network.host: 0.0.0.0
 # For more information, see the documentation at:
 # <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery.html>
 #
+# ---------------------------------- Gateway -----------------------------------
+#
+# Block initial recovery after a full cluster restart until N nodes are started:
+#
+# gateway.recover_after_nodes: 3
+#
+# For more information, see the documentation at:
+# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-gateway.html>
+#
 # ---------------------------------- Various -----------------------------------
 #
 # Disable starting multiple nodes on a single system:
@@ -94,3 +92,6 @@ network.host: 0.0.0.0
 # Require explicit names when deleting indices:
 #
 # action.destructive_requires_name: true
+
+index.number_of_shards: 1
+index.number_of_replicas: 0
