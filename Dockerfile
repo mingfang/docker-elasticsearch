@@ -1,17 +1,18 @@
 FROM ubuntu:14.04
- 
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
+  
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=en_US.UTF-8 \
+    TERM=xterm
 RUN locale-gen en_US en_US.UTF-8
-ENV LANG en_US.UTF-8
 RUN echo "export PS1='\e[1;31m\]\u@\h:\w\\$\[\e[0m\] '" >> /root/.bashrc
+RUN apt-get update
 
-#Runit
+# Runit
 RUN apt-get install -y runit 
 CMD export > /etc/envvars && /usr/sbin/runsvdir-start
 RUN echo 'export > /etc/envvars' >> /root/.bashrc
 
-#Utilities
+# Utilities
 RUN apt-get install -y vim less net-tools inetutils-ping wget curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common jq psmisc
 
 #Install Oracle Java 8
@@ -22,7 +23,7 @@ RUN add-apt-repository ppa:webupd8team/java -y && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 #ElasticSearch
-RUN wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.2.0/elasticsearch-2.2.0.tar.gz | tar xz && \
+RUN wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.3/elasticsearch-2.3.3.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
 
 #Delete By Query Plugin
@@ -34,6 +35,7 @@ RUN chown -R elasticsearch /elasticsearch
 
 COPY elasticsearch.yml /elasticsearch/config/
 
-#Add runit services
+# Add runit services
 COPY sv /etc/service 
-
+ARG BUILD_INFO
+LABEL BUILD_INFO=$BUILD_INFO
