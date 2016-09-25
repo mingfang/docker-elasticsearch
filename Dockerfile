@@ -32,6 +32,10 @@ RUN wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elast
 RUN cd /elasticsearch/bin && \
     ./plugin install delete-by-query
 
+#Kubernetes Discovery Plugin
+RUN cd /elasticsearch/bin && \
+    ./plugin install io.fabric8/elasticsearch-cloud-kubernetes/2.4.0_01
+
 RUN useradd elasticsearch
 RUN chown -R elasticsearch /elasticsearch
 
