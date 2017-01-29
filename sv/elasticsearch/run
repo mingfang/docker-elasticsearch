@@ -4,9 +4,5 @@
 
 source /etc/envvars
 
-if [ ${CLUSTER_NAME} ]; then
-  sed -i -e "s|# cluster.name:.*|cluster.name: ${CLUSTER_NAME}|" /elasticsearch/config/elasticsearch.yml
-fi
-
 exec 2>&1
 chpst -u elasticsearch /elasticsearch/bin/elasticsearch
