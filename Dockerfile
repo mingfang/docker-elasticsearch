@@ -29,9 +29,9 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 RUN wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.1/elasticsearch-2.4.1.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
 
-#Delete By Query Plugin
-RUN cd /elasticsearch/bin && \
-    ./plugin install delete-by-query
+#Plugins
+RUN /elasticsearch/bin/plugin install delete-by-query && \
+    /elasticsearch/bin/plugin install mobz/elasticsearch-head
 
 COPY elasticsearch.yml /elasticsearch/config/
 
