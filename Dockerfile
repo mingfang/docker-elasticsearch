@@ -29,7 +29,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 RUN wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.1.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
 
-#COPY elasticsearch.yml /elasticsearch/config/
+COPY elasticsearch.yml /elasticsearch/config/
 
 RUN useradd elasticsearch
 RUN chown -R elasticsearch /elasticsearch
