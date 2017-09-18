@@ -95,6 +95,4 @@ discovery.zen.ping.unicast.hosts: ${UNICAST_HOSTS:localhost}
 #
 # action.destructive_requires_name: true
 
-index.number_of_shards: 1
-index.number_of_replicas: 0
 #action.auto_create_index: false
