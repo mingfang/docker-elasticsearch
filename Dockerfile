@@ -26,7 +26,7 @@ RUN add-apt-repository ppa:webupd8team/java -y && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 #ElasticSearch
-RUN wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.2.tar.gz | tar xz && \
+RUN wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.4.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
 
 COPY elasticsearch.yml /elasticsearch/config/
