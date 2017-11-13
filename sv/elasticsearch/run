@@ -4,5 +4,9 @@
 
 source /etc/envvars
 
+PATH_DATA="${PATH_DATA="/tmp"}"
+mkdir -p "$PATH_DATA"
+chown -R elasticsearch $PATH_DATA
+
 exec 2>&1
 chpst -u elasticsearch /elasticsearch/bin/elasticsearch
