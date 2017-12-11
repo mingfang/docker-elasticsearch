@@ -30,6 +30,7 @@ RUN wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch
     mv elasticsearch-* elasticsearch
 
 COPY elasticsearch.yml /elasticsearch/config/
+COPY jvm.options /elasticsearch/config/
 
 RUN useradd elasticsearch
 RUN chown -R elasticsearch /elasticsearch
