@@ -29,6 +29,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 RUN wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.3.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
 
+RUN /elasticsearch/bin/elasticsearch-plugin install ingest-geoip
+
 COPY elasticsearch.yml /elasticsearch/config/
 COPY jvm.options /elasticsearch/config/
 
